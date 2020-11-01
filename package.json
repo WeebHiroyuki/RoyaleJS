@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/gavintjhxx/RoyaleJS.git"
   },
-  "keywords": [],
+  "keywords": [
+    "clashroyale",
+    "royaleapi",
+    "royalejs"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
