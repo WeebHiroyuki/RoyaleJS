@@ -1,6 +1,6 @@
 {
   "name": "@zloth/royalejs",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "An updated Node.js library to interact with Clash Royale's API",
   "main": "src/RoyaleJS.js",
   "scripts": {
