@@ -1,8 +1,8 @@
 {
-  "name": "RoyaleJS",
+  "name": "@zloth/royalejs",
   "version": "1.0.0",
   "description": "**Current Status:** Alpha | In Development",
-  "main": "index.js",
+  "main": "src/RoyaleJS.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
