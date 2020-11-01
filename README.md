@@ -3,11 +3,11 @@
 **Latest Version:** 1.0.0
 
 # **Documentation**
-Remember to first install royalejs. | `npm i royalejs`
+Remember to first install royalejs. | `npm i @zloth/royalejs`
 
 ## **Basic setup**
 ```javascript
-const RoyaleJS = require("royalejS");
+const RoyaleJS = require("royalejs");
 const client = new RoyaleJS("apiKey");
 ```
 
