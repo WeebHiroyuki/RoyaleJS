@@ -1,6 +1,6 @@
 # **Clash Royale Node.js Library**
 
-**Latest Version:** 1.0.0
+**Latest Version:** 1.0.1
 
 # **Documentation**
 Remember to first install royalejs. | `npm i @zloth/royalejs`
