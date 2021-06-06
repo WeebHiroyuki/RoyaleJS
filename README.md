@@ -3,48 +3,53 @@
 **Latest Version:** 1.0.0
 
 # **Documentation**
-Remember to first install royalejs. | `npm i @zloth/royalejs`
+Install RoyaleJS | `npm i @zloth/royalejs`<br>
+The full documentation can be found in https://docs.zloth.xyz/royalejs/ (Working in Progress)<br>
+Changelogs in versions and updates can be found in [/changelog.md](https://github.com/gavintjhxx/RoyaleJS/blob/master/changelog.md)
 
-## **Basic setup**
+## **Existing Features:**
+* Clans
+  * Get information of a specific clan
+  * Get Members in a specific clan
+  * Get Current River Race of a specific clan
+  * Get Current War of a specific clan
+  * Get River Race Log of a specific clan
+  * Get War Log of a specific clan
+* Players
+  * Get information of a specific player
+  * Get Upcoming Chests of a specific player
+  * Get Battle Log of a specific player
+* Cards
+  * Get a full list and information of all existing cards
+* Tournaments
+  * Get information of a specific tournament
+  * Get a full list and information of all global tournaments
+* Locations
+  * Get a full list and information of all existing locations
+  * Get information of a specific location
+  * Get Player Rankings in a specific location
+  * Get Clan Rankings in a specific location
+  * Get Clan War Rankings in a specific location
+  * Get full list and information of Top Player League seasons
+  * Get information of a specific Top Player League season
+  * Get full list and information of Top Player Rankings in a specific season
+  * Get Global Tournament Ranking of a specific tournament
+
+## **Configuration**
 ```javascript
 const RoyaleJS = require("royalejs");
 const client = new RoyaleJS("apiKey");
 ```
 
-## **Functions**
+## **Example**
 ```javascript
-//Get clan details
 client.getClan("clanTag").then((clan) => {
-    //Do something
+  console.log(clan)
+  // Do something
 });
 
-//Get player details
 client.getPlayer("playerTag").then((player) => {
-    //Do something
-});
-
-//Get tournament details
-client.getTournament("tournamentTag").then((tournament) => {
-    //Do something
-});
-
-//Get details of ranking of clan in a location
-client.getClanRankingByLocation("locationID").then((ranking) => {
-    //Do something
-});
-
-//Get details of ranking of players in a location
-client.getPlayerRankingByLocation("locationID").then((clan) => {
-    //Do something
-});
-
-//Get a full list of in-game cards
-client.getCards().then((cards) => {
-    //Do something
-});
-
-//Get a full list of global tournaments
-client.getGlobalTournaments().then((globalTournaments) => {
-    //Do something
+  console.log(player);
+  // Do something
 });
 ```
