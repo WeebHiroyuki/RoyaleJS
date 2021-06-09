@@ -1,5 +1,8 @@
 const axios = require("axios");
 const Endpoints = require("./Endpoints");
+const Player = require("./Classes/Player");
+const Clan = require("./Classes/Clan");
+const Cards = require("./Classes/Cards");
 
 class RoyaleJS {
 
@@ -61,147 +64,8 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
-
-        } catch (error) {
-            let err = error.toString().split(" ");
-            let errCode = err[err.length - 1];
-            res = { status: errCode, error: err.join(" ") };
-            return res;
-        }
-
-    }
-
-    /**
-     * 
-     * @param {string} clanTag 
-     * @description Get Members in a specific clan
-     * @returns Promise { object }
-     */
-    async getClanMembers(clanTag) {
-        if (!clanTag) throw new Error("You need to provide a clan tag.");
-        let res;
-        try {
-
-            res = await axios({
-                method: "get",
-                url: Endpoints.CLAN_MEMBERS(clanTag),
-                headers: this.header
-            });
-
-            return res.data;
-
-        } catch (error) {
-            let err = error.toString().split(" ");
-            let errCode = err[err.length - 1];
-            res = { status: errCode, error: err.join(" ") };
-            return res;
-        }
-
-    }
-
-    /**
-     * 
-     * @param {string} clanTag 
-     * @description Get Current War of a specific clan
-     * @returns Promise { object }
-     */
-    async getClanCurrentWar(clanTag) {
-        if (!clanTag) throw new Error("You need to provide a clan tag.");
-        let res;
-        try {
-
-            res = await axios({
-                method: "get",
-                url: Endpoints.CLAN_CURRENT_WAR(clanTag),
-                headers: this.header
-            });
-
-            return res.data;
-
-        } catch (error) {
-            let err = error.toString().split(" ");
-            let errCode = err[err.length - 1];
-            res = { status: errCode, error: err.join(" ") };
-            return res;
-        }
-
-    }
-
-    /**
-     * 
-     * @param {string} clanTag 
-     * @description Get Current River Race of a specific clan
-     * @returns Promise { object }
-     */
-    async getClanCurrentRiverRace(clanTag) {
-        if (!clanTag) throw new Error("You need to provide a clan tag.");
-        let res;
-        try {
-
-            res = await axios({
-                method: "get",
-                url: Endpoints.CLAN_CURRENT_RIVER_RACE(clanTag),
-                headers: this.header
-            });
-
-            return res.data;
-
-        } catch (error) {
-            let err = error.toString().split(" ");
-            let errCode = err[err.length - 1];
-            res = { status: errCode, error: err.join(" ") };
-            return res;
-        }
-
-    }
-
-    /**
-    * 
-    * @param {string} clanTag 
-    * @description Get River Race Log of a specific clan
-    * @returns Promise { object }
-    */
-    async getClanRiverRaceLog(clanTag) {
-        if (!clanTag) throw new Error("You need to provide a clan tag.");
-        let res;
-        try {
-
-            res = await axios({
-                method: "get",
-                url: Endpoints.CLAN_RIVER_RACE_LOG(clanTag),
-                headers: this.header
-            });
-
-            return res.data;
-
-        } catch (error) {
-            let err = error.toString().split(" ");
-            let errCode = err[err.length - 1];
-            res = { status: errCode, error: err.join(" ") };
-            return res;
-        }
-
-    }
-
-    /**
-   * 
-   * @param {string} clanTag 
-   * @description Get War Log of a specific clan
-   * @returns Promise { object }
-   */
-    async getClanWarLog(clanTag) {
-        if (!clanTag) throw new Error("You need to provide a clan tag.");
-        let res;
-        try {
-
-            res = await axios({
-                method: "get",
-                url: Endpoints.CLAN_WAR_LOG(clanTag),
-                headers: this.header
-            });
-
-            return res.data;
+            let clan = new Clan(res.data);
+            return clan;
 
         } catch (error) {
             let err = error.toString().split(" ");
@@ -216,7 +80,7 @@ class RoyaleJS {
      * 
      * @param {string} playerTag 
      * @description Get information of a specific player
-     * @returns Object
+     * @returns Promise { object }
      */
     async getPlayer(playerTag) {
 
@@ -230,7 +94,8 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
+            let player = new Player(res.data);
+            return player;
 
         } catch (error) {
             let err = error.toString().split(" ");
@@ -245,7 +110,7 @@ class RoyaleJS {
      * 
      * @param {string} playerTag 
      * @description Get Upcoming Chests of a specific player
-     * @returns Object
+     * @returns Promise { object }
      */
     async getPlayerUpcomingChests(playerTag) {
 
@@ -274,7 +139,7 @@ class RoyaleJS {
      * 
      * @param {string} playerTag 
      * @description Get Battle Log of a specific player
-     * @returns Object
+     * @returns Promise { object }
      */
     async getPlayerBattleLog(playerTag) {
 
@@ -302,7 +167,7 @@ class RoyaleJS {
     /**
      * 
      * @description Get a full list and information of all existing cards
-     * @returns Object
+     * @returns Promise { object }
      */
     async getCards() {
 
@@ -315,7 +180,8 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
+            let cards = new Cards(res.data);
+            return cards;
 
         } catch (error) {
             let err = error.toString().split(" ");
@@ -329,7 +195,7 @@ class RoyaleJS {
     /**
      * 
      * @description Queries the API for a full list of existing Tournaments
-     * @returns Object
+     * @returns Promise { object }
      */
     /*
     async getTournaments() {
@@ -360,7 +226,7 @@ class RoyaleJS {
      * 
      * @param {string} tournamentTag 
      * @description Get information of a specific tournament
-     * @returns Object
+     * @returns Promise { object }
      */
     async getTournament(tournamentTag) {
 
@@ -388,7 +254,7 @@ class RoyaleJS {
     /**
      * 
      * @description Get a full list and information of all global tournaments
-     * @returns Object
+     * @returns Promise { object }
      */
     async getGlobalTournaments() {
 
@@ -415,10 +281,12 @@ class RoyaleJS {
     /**
      * 
      * @description Get a full list and information of all existing locations
-     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/locations
-     * @returns Object
+     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/documentation/reference
+     * @returns Promise { object }
      */
     async getLocations() {
+
+        let res;
 
         try {
 
@@ -443,10 +311,12 @@ class RoyaleJS {
      * 
      * @param {string} locationID Location ID (e.g. "57000001" - North America])
      * @description Get information of a specific location
-     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/locations
-     * @returns Object
+     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/documentation/reference
+     * @returns Promise { object }
      */
     async getLocation(locationID) {
+
+        let res;
 
         if (!locationID) throw new Error("You need to provide a location ID.");
         try {
@@ -472,10 +342,12 @@ class RoyaleJS {
      * 
      * @param {string} locationID Location ID (e.g. "57000001" - North America])
      * @description Get Player Rankings in a specific location
-     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/locations
-     * @returns Object
+     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/documentation/reference
+     * @returns Promise { object }
      */
     async getPlayerRankingsByLocation(locationID) {
+
+        let res;
 
         if (!locationID) throw new Error("You need to provide a location ID.");
         try {
@@ -501,12 +373,14 @@ class RoyaleJS {
      * 
      * @param {string} locationID Location ID (e.g. "57000001" - North America])
      * @description Get Clan Rankings in a specific location
-     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/locations
-     * @returns Object
+     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/documentation/reference
+     * @returns Promise { object }
      */
     async getClanRankingsByLocation(locationID) {
 
         if (!locationID) throw new Error("You need to provide a location ID.");
+        let res;
+
         try {
 
             res = await axios({
@@ -530,12 +404,14 @@ class RoyaleJS {
      * 
      * @param {string} locationID Location ID (e.g. "57000001" - North America])
      * @description Get Clan War Rankings in a specific location
-     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/locations
-     * @returns Object
+     * @description Full list of location IDs can be found in https://docs.zloth.xyz/royalejs/documentation/reference
+     * @returns Promise { object }
      */
     async getClanWarRankingsByLocation(locationID) {
 
         if (!locationID) throw new Error("You need to provide a location ID.");
+        let res;
+
         try {
 
             res = await axios({
@@ -558,9 +434,11 @@ class RoyaleJS {
     /**
      * 
      * @description Get full list and information of Top Player League seasons
-     * @returns Object
+     * @returns Promise { object }
      */
     async getTopPlayerLeagueSeasons() {
+
+        let res;
 
         try {
 
@@ -584,40 +462,14 @@ class RoyaleJS {
     /**
      * 
      * @param {string} seasonID Season ID
-     * @description Get information of a specific Top Player League season
-     * @returns Object
-     */
-    async getTopPlayerLeagueSeason(seasonID) {
-
-        if (!seasonID) throw new Error("You need to provide a season ID.");
-        try {
-
-            res = await axios({
-                method: "get",
-                url: Endpoints.TOP_PLAYER_LEAGUE_SEASON(seasonID),
-                headers: this.header
-            });
-
-            return res.data;
-
-        } catch (error) {
-            let err = error.toString().split(" ");
-            let errCode = err[err.length - 1];
-            res = { status: errCode, error: err.join(" ") };
-            return res;
-        }
-
-    }
-
-    /**
-     * 
-     * @param {string} seasonID Season ID
      * @description Get full list and information of Top Player Rankings in a specific season
-     * @returns Object
+     * @returns Promise { object }
      */
     async getTopPlayerRankingsInSeason(seasonID) {
 
         if (!seasonID) throw new Error("You need to provide a season ID.");
+        let res;
+
         try {
 
             res = await axios({
@@ -641,11 +493,13 @@ class RoyaleJS {
      * 
      * @param {string} tournamentTag Tournament Tag
      * @description Get Global Tournament Ranking of a specific tournament
-     * @returns Object
+     * @returns Promise { object }
      */
     async getGlobalTournamentRankingOfTournament(tournamentTag) {
 
         if (!tournamentTag) throw new Error("You need to provide a tournament tag.");
+        let res;
+
         try {
 
             res = await axios({
