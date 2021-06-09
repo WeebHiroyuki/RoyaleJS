@@ -4,7 +4,7 @@
 
 # **Documentation**
 Install RoyaleJS | `npm i @zloth/royalejs`<br>
-The full documentation can be found in https://docs.zloth.xyz/royalejs/ (Working in Progress)<br>
+The full documentation can be found in https://docs.zloth.xyz/royalejs/ (Work in Progress)<br>
 Changelogs in versions and updates can be found in [/changelog.md](https://github.com/gavintjhxx/RoyaleJS/blob/master/changelog.md)
 
 ## **Existing Features:**
