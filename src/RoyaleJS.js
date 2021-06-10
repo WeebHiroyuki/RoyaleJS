@@ -3,6 +3,9 @@ const Endpoints = require("./Endpoints");
 const Player = require("./Classes/Player");
 const Clan = require("./Classes/Clan");
 const Cards = require("./Classes/Cards");
+const Locations = require("./Classes/Locations");
+const Location = require("./Classes/Location");
+const UpcomingChests = require("./Classes/UpcomingChests");
 
 class RoyaleJS {
 
@@ -124,7 +127,8 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
+            let upcomingChests = new UpcomingChests(res.data);
+            return upcomingChests;
 
         } catch (error) {
             let err = error.toString().split(" ");
@@ -296,7 +300,8 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
+            let locations = new Locations(res.data);
+            return locations;
 
         } catch (error) {
             let err = error.toString().split(" ");
@@ -327,7 +332,8 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
+            let location = new Location(res.data);
+            return location;
 
         } catch (error) {
             let err = error.toString().split(" ");

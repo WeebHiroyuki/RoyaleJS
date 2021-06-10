@@ -1,4 +1,4 @@
-const Location = require("./Location");
+const ClanLocation = require("./ClanLocation");
 const Members = require("./Members");
 
 class Clan {
@@ -12,7 +12,7 @@ class Clan {
         this.badgeID = clanData.badgeId;
         this.clanScore = clanData.clanScore;
         this.clanWarTrophies = clanData.clanWarTrophies;
-        this.location = new Location(clanData.location);
+        this.location = new ClanLocation(clanData.location);
         this.requiredTrophies = clanData.requiredTrophies;
         this.donationsPerweek = clanData.donationsPerWeek;
         this.clanChestStatus = clanData.clanChestStatus;
