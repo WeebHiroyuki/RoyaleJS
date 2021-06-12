@@ -1,4 +1,4 @@
-const LastSeen = require("./LastSeen");
+const Dateify = require("./Dateify");
 
 class Members {
 
@@ -19,7 +19,7 @@ class Members {
                 role: member.role,
                 arena: member.arena,
                 clanChestPoints: member.clanChestPoints,
-                lastSeen: new LastSeen(member.lastSeen)
+                lastSeen: new Dateify(member.lastSeen)
             });
         });
 

@@ -6,6 +6,8 @@ const Cards = require("./Classes/Cards");
 const Locations = require("./Classes/Locations");
 const Location = require("./Classes/Location");
 const UpcomingChests = require("./Classes/UpcomingChests");
+const BattleLog = require("./Classes/BattleLog");
+const Tournament = require("./Classes/Tournament");
 
 class RoyaleJS {
 
@@ -157,12 +159,14 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
+            let battleLog = new BattleLog(res.data);
+            return battleLog;
 
         } catch (error) {
             let err = error.toString().split(" ");
             let errCode = err[err.length - 1];
             res = { status: errCode, error: err.join(" ") };
+            return console.log(error);
             return res;
         }
 
@@ -244,7 +248,8 @@ class RoyaleJS {
                 headers: this.header
             });
 
-            return res.data;
+            let tournament = new Tournament(res.data);
+            return tournament;
 
         } catch (error) {
             let err = error.toString().split(" ");
